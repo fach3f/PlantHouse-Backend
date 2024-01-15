@@ -546,7 +546,7 @@ const getWtempData = async (request, h) => {
         } else {
             return h.response({
                 status: "Failed",
-                message: "Data water temperature tidak ditemukan",
+                message: "Data water temperature tidak! ditemukan",
                 code: 404,
             });
         }
