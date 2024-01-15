@@ -77,7 +77,7 @@ const {
   },
   {
     method: 'GET',
-    path: '/getwtemp',
+    path: '/getwtemp1',
     handler: getWtempData,
 },
 
