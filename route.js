@@ -11,6 +11,7 @@ const {
     gettotalhumid,
     getWaterStatus,
     updateWaterStatus,
+    getWtempData,
   } = require("./handler");
 
   const routes = [
@@ -74,6 +75,12 @@ const {
     path: '/updateWaterStatus',
     handler: updateWaterStatus,
   },
+  {
+    method: 'GET',
+    path: '/getwtemp',
+    handler: getWtempData,
+},
+
 ];
 
 

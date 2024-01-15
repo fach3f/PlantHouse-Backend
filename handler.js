@@ -524,6 +524,44 @@ const getWaterStatus = async (request, h) => {
     }
 };
 
+const getWtempData = async (request, h) => {
+    try {
+        const db = await createConnection();
+
+        // Assuming you have a table named 'wtemp' for storing water temperature data
+        const [rows] = await db.execute("SELECT * FROM wtemp ORDER BY timestamp DESC LIMIT 1");
+
+        if (rows.length > 0) {
+            const wtempData = {
+                wtemp: rows[0].wtemp,
+                timestamp: rows[0].timestamp
+            };
+
+            return h.response({
+                status: "Success",
+                message: "Berhasil mendapatkan data water temperature",
+                code: 200,
+                data: wtempData,
+            });
+        } else {
+            return h.response({
+                status: "Failed",
+                message: "Data water temperature tidak ditemukan",
+                code: 404,
+            });
+        }
+    } catch (error) {
+        console.error('Error during fetching water temperature data:', error);
+        return h.response({
+            status: "Failed",
+            message: "Terjadi kesalahan internal saat mengambil data water temperature.",
+            code: 500,
+        });
+    }
+};
+
+
+
   
 
 module.exports = {
@@ -538,5 +576,6 @@ module.exports = {
     getTotalTurbidity,
     gettotalhumid,
     getWaterStatus,
-    updateWaterStatus
+    updateWaterStatus,
+    getWtempData
 }
